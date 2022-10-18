@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "node src/index.js",
+    "keygen": "node src/keygen.js"
+  },
+  "dependencies": {
+    "node-rsa": "^1.1.1",
+    "votifier-server": "^1.0.4"
+  }
+}
