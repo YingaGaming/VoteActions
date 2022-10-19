@@ -7,7 +7,7 @@ if (!fs.existsSync('./private.pem')) {
     process.exit()
 }
 
-const votifier = require("votifier")(__dirname + "../private.pem", config.port);
+const votifier = require("votifier")(__dirname + "/../private.pem", config.port);
 
 votifier.on('vote', function(username, server, ip, date) {
     console.log(username);
