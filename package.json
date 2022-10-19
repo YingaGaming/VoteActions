@@ -4,7 +4,9 @@
     "keygen": "openssl genrsa -out private.pem 2048 && openssl rsa -in private.pem -pubout > public.pem"
   },
   "dependencies": {
+    "@minecraft-js/rcon": "^1.1.0",
     "@yinga-gaming/votifier": "^0.0.1",
+    "minecraft-api": "^0.0.2",
     "node-rsa": "^1.1.1"
   }
 }

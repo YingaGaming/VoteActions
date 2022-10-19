@@ -1,4 +1,5 @@
 const fs = require('fs')
+const votemanager = require('./votemanager')
 
 const config = require('../config')
 
@@ -10,8 +11,9 @@ if (!fs.existsSync('./private.pem')) {
 const votifier = require("@yinga-gaming/votifier")(__dirname + "/../private.pem", config.port);
 
 votifier.on('vote', function(username, server, ip, date) {
-    console.log(username);
-    console.log(server);
-    console.log(ip);
-    console.log(date);
+    votemanager.vote(username)
+})
+
+votifier.on('error', err => {
+    console.error(err)
 })
