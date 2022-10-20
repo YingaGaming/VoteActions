@@ -25,8 +25,8 @@ Setup:
 - Generate your encryption keys with ``npm run keygen``
 - Start VoteActions with ``npm start``
 
-Your public key is in the ``public.pem`` file! This is what you put into your serverlist sites!
-**NEVER** share ``private.pem``, or others will be able to trigger actions without actually voting!
+Your public key is in the ``public.pem`` file! This is what you put into your serverlist sites!  
+Although this is technically a **public** key, you should **NOT** share it with anyone you do not trust, or they will be able to trigger actions without actually voting! Same goes for ``private.pem``, as it can be used to extract your public key!
 
 ### Troubleshooting
 **I'm trying to connect my server listing, but it says the public key is invalid!**  
