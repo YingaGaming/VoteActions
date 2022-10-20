@@ -16,6 +16,9 @@ module.exports = {
         password: 'VerySecurePassword'
     },
 
+    // Webhook URL for sending Discord notifications (optional)
+    discordWebhook: '',
+
     // Checks if usernames belong to actual players. Disable this if you're using GeyserMC or similar.
     //
     // If disabled, the UUID of Geyser players will be set to their username. Keep this in mind when defining actions.
@@ -43,9 +46,13 @@ module.exports = {
 
             // Runs a custom function
             //
-            // DO NOT BLINDLY PASTE STUFF INTO HERE! 
+            // DO NOT BLINDLY PASTE STUFF INTO HERE!
             // This function is run as- is! Without checks, and not sandboxed!
             // We are not responsible if any reverse shells or similar suddenly appear on your server because of this!
+            //
+            // You can use require() to hook into existing source code or load modules.
+            // For example, to send an RCON command:
+            // require('./src/rcon').send('say Hello There!')
             //
             // player           |   String  |   Username of the player
             // data             |   Object  |   Player data
@@ -55,8 +62,46 @@ module.exports = {
             // data.last        |   Number  |   Timestamp of the last vote
             // data.lastReset   |   Number  |   Timestamp of the last reset
             custom: (player, data) => {
-                console.log(`${player} voted ${count} times!`)
+                console.log(`${player} voted ${data.count} times!`)
+            },
+
+            // Message data for Discord notifications
+            // Make sure to set "discordWebhook" above if using this
+            //
+            // If you don't know how to use this, check out https://leovoel.github.io/embed-visualizer/
+            //
+            // Placeholders:
+            // %player%     |   Player name
+            // %uuid%       |   UUID of the player
+            // %count%      |   Current vote count
+            // %total%      |   Total amount of votes
+            // %avatar%     |   URL of player head image
+            // %timestamp%  |   Current timestamp, already formatted for Discord
+            discord: {
+                "embed": {
+                    "title": "New Vote!",
+                    "description": "This person has voted! You should too!",
+                    "color": 9121513,
+                    "timestamp": "%timestamp%",
+                    "thumbnail": {
+                        "url": "https://purepng.com/public/uploads/medium/heart-icon-lot.png"
+                    },
+                    "author": {
+                        "name": "%player%",
+                        "icon_url": "%avatar%"
+                    },
+                    "fields": [{
+                            "name": "This Month",
+                            "value": "%count%"
+                        },
+                        {
+                            "name": "Total",
+                            "value": "%total%"
+                        }
+                    ]
+                }
             }
+
         }
     }
 

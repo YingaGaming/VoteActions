@@ -1,6 +1,7 @@
 const mongo = require('./mongo')
 const minecraft = require('minecraft-api')
 const rcon = require('./rcon')
+const fetch = require('cross-fetch')
 const config = require('../config')
 
 let runAction = async(username, action, data) => {
@@ -18,19 +19,38 @@ let runAction = async(username, action, data) => {
         action.custom(username, data)
     }
 
+    if (action.discord && config.discordWebhook) {
+
+        let payload = JSON.stringify(action.discord)
+            .split('%player%').join(username)
+            .split('%count%').join(data.count)
+            .split('%total%').join(data.total)
+            .split('%uuid%').join(data.uuid)
+            .split('%avatar%').join(`https://crafatar.com/avatars/${data.uuid}`)
+            .split('%timestamp%').join((new Date()).toISOString())
+
+        fetch(config.discordWebhook, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: payload
+        })
+    }
+
 }
 
-module.exports.vote = async (username) => {
-    
+module.exports.vote = async(username) => {
+
     let uuid
 
     await minecraft.uuidForName(username)
         .then(x => uuid = x)
         .catch(() => {
-            if(!config.checkUUID)uuid = username
+            if (!config.checkUUID) uuid = username
         })
-    
-    if(!uuid)return
+
+    if (!uuid) return
 
     let data = await mongo.queryOne('Votes', { uuid: uuid })
 
