@@ -68,7 +68,7 @@ module.exports = {
             // Message data for Discord notifications
             // Make sure to set "discordWebhook" above if using this
             //
-            // If you don't know how to use this, check out https://leovoel.github.io/embed-visualizer/
+            // If you don't know how to use this, check out https://leovoel.github.io/embed-visualizer/ (enable webhook mode)
             //
             // Placeholders:
             // %player%     |   Player name
@@ -78,7 +78,7 @@ module.exports = {
             // %avatar%     |   URL of player head image
             // %timestamp%  |   Current timestamp, already formatted for Discord
             discord: {
-                "embed": {
+                "embeds": [{
                     "title": "New Vote!",
                     "description": "This person has voted! You should too!",
                     "color": 9121513,
@@ -99,7 +99,7 @@ module.exports = {
                             "value": "%total%"
                         }
                     ]
-                }
+                }]
             }
 
         }
