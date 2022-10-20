@@ -24,7 +24,9 @@ module.exports.vote = async(username) => {
 
     await minecraft.uuidForName(username)
         .then(x => uuid = x)
-        .catch(() => uuid = username)
+        .catch(() => {
+            if(!config.checkUUID)uuid = username
+        })
 
     let data = await mongo.queryOne('Votes', { uuid: uuid })
 
