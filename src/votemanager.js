@@ -27,6 +27,8 @@ module.exports.vote = async(username) => {
         .catch(() => {
             if(!config.checkUUID)uuid = username
         })
+    
+    if(!uuid)return
 
     let data = await mongo.queryOne('Votes', { uuid: uuid })
 
