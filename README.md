@@ -7,7 +7,7 @@ VoteActions allows you to run custom actions whenever someone votes for your Min
 You do not need to run any plugins on your server for this to work!
 
 ### Features
-- Different actions for different vote amounts
+- Different actions for different vote amounts within a specified timeframe
 - Run commands via RCON
 - Discord Notifications
 - Run custom JavaScript
