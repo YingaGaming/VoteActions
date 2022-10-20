@@ -28,6 +28,13 @@ Setup:
 Your public key is in the ``public.pem`` file! This is what you put into your serverlist sites!
 **NEVER** share ``private.pem``, or others will be able to trigger actions without actually voting!
 
+### Troubleshooting
+**I'm trying to connect my server listing, but it says the public key is invalid!**
+Some sites want keys in a different format (because who needs standards anyway). Try removing the header lines (the ones with a bunch of dashes) and removing all line breaks. If that doesn't work, you'll need to figure out how the site wants the key yourself. You may need to ask around.
+
+**The commands I have set are not being executed!**
+Make sure your RCON info is valid. Have a look in the server.properties of your Minecraft server. Is RCON enabled? On which port? Is the password correct?
+
 ### Credits
 - Player head images provided by [Crafatar](https://crafatar.com)
 - Votifier protocol implementation by [node-votifier](https://github.com/VeltroGaming/votifier) (We use [our own fork](https://github.com/YingaGaming/votifier))
