@@ -20,7 +20,9 @@ let runAction = async(username, action, data) => {
 
 }
 
-module.exports.vote = async(username) => {
+module.exports.vote = async (username) => {
+    
+    let uuid
 
     await minecraft.uuidForName(username)
         .then(x => uuid = x)
