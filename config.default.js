@@ -47,12 +47,15 @@ module.exports = {
             // Runs a custom function
             //
             // DO NOT BLINDLY PASTE STUFF INTO HERE!
-            // This function is run as- is! Without checks, and not sandboxed!
+            // This function is run as-is! Without checks, and not sandboxed!
             // We are not responsible if any reverse shells or similar suddenly appear on your server because of this!
             //
             // You can use require() to hook into existing source code or load modules.
             // For example, to send an RCON command:
             // require('./src/rcon').send('say Hello There!')
+            //
+            // If you're using lots of custom actions (or large ones), you can organize them by putting them into a folder as separate files 
+            // and just redirecting to there with something like: require('./custom-actions/myaction').run(player, data)
             //
             // player           |   String  |   Username of the player
             // data             |   Object  |   Player data
